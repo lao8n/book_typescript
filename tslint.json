@@ -15,8 +15,12 @@
     "no-namespace": false,
     "no-shadowed-variable": false,
     "no-unused-expression": false,
+    "no-invalid-this": true,
     "prefer-const": false,
-    "quotemark": [true, "single"],
+    "quotemark": [
+      true,
+      "single"
+    ],
     "semicolon": false
   },
   "rulesDirectory": []
