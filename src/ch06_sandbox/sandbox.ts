@@ -45,3 +45,21 @@ let nextWorkingDayMappedTypeError: { [K in Weekday]: Weekday } = {
     Mon: 'Tue',
 }
 // Error TS2739: Type '{Mon: "Tue"}' is missing the following properties from type '{Mon: Weekday; Tue: Weekday; Wed: Weekday; Thu: Weekday; Fri: Weekday}': Tue, Wed, Thu, Fri.
+
+
+
+
+// without distribution over conditional types
+type Without<T, U> = T extends U ? never : T
+type A = Without<boolean | number | string, boolean>
+// if there was no distribution then you couldn't do 
+type ADistributed = Without<boolean, boolean>
+    | Without<number, boolean>
+    | Without<string, boolean>
+// instead you would go straight to definition with 
+typeANoDistribution = boolean | number | string extends boolean ? never : boolean | number | string
+// it does not extend so you get never back
+
+type ElementType<T> = T extends unknown[] ? T[number] : T // if it is an array then extract type by indexing array
+type AGeneric = ElementType<number[]> // number
+type ATest = ElementType<string[]> // string
