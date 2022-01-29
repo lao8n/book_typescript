@@ -63,3 +63,13 @@ typeANoDistribution = boolean | number | string extends boolean ? never : boolea
 type ElementType<T> = T extends unknown[] ? T[number] : T // if it is an array then extract type by indexing array
 type AGeneric = ElementType<number[]> // number
 type ATest = ElementType<string[]> // string
+// use infer instead
+type ElementType2<T> = T extends (infer U)[] ? U : T
+type B = ElementType2<number[]> // number
+
+// where [].slice is a function 
+type SecondArg<F> = F extends (a: any, b: infer B) => any ? B : never
+// Get the type of Array.slice
+// (method) Array<any>.slice(start?: number | undefined, end?: number | undefined): any[]
+type F = typeof Array['prototype']['slice']
+type A = SecondArg<F> // number | undefined
