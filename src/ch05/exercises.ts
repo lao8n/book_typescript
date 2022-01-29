@@ -7,12 +7,12 @@ export default null // Force module mode
 // 2. When you mark a class' constructor as `private`, that means you can't instantiate or extend the class. What happens when you mark it as `protected` instead? Play around with this in your code editor, and see if you can figure it out.
 
 class A {
-  protected constructor() {}
+  protected constructor() { }
 }
 
-class B extends A {} // ok
-new A() // error
-new B() // error
+class B extends A { } // ok
+// new A() // error
+// new B() // error
 
 /* Unlike a class with a private constructor, a class with a protected constructor can be extended. Neither a class with a private constructor nor a class with a protected constructor can be new-ed. */
 
@@ -120,15 +120,15 @@ class RequestBuilder2 {
   url?: string
 
   setData(data: object): this & Pick<BuildableRequest, 'data'> {
-    return Object.assign(this, {data})
+    return Object.assign(this, { data })
   }
 
   setMethod(method: 'get' | 'post'): this & Pick<BuildableRequest, 'method'> {
-    return Object.assign(this, {method})
+    return Object.assign(this, { method })
   }
 
   setURL(url: string): this & Pick<BuildableRequest, 'url'> {
-    return Object.assign(this, {url})
+    return Object.assign(this, { url })
   }
 
   build(this: BuildableRequest) {
